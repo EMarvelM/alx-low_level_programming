@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * print_alphabet - print lower case alphabet
+ * print_alphabet_x10 - print lower case alphabet
  *
  * Return: always 0.
  *
  */
 
-int print_alphabet()
+int print_alphabet_x10(void)
 {
 	int i, n = 97;
 
