@@ -7,7 +7,7 @@
  *
  */
 
-int print_alphabet_x10(void)
+void print_alphabet_x10(void)
 {
 	int i, n = 97;
 
@@ -20,5 +20,4 @@ int print_alphabet_x10(void)
 		_putchar('\n');
 	}
 
-	return (0);
 }
