@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * swap_init - swaps the values of two integers
+ * swap_int - swaps the values of two integers
  *
- * @a, @b: int parameters for unswapped integer
+ * @b: int parameters for unswapped integer
+ * @a: int parameters for unswapped integer
  *
  * Returns: always void
  */
