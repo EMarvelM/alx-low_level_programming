@@ -13,7 +13,8 @@ int _strlen(char *s)
 
 	for (i = 0; *s != '\0'; i++)
 	{
-		*s++;
+		/* Incrementing *s and i in the loop */
+		s++;
 	}
 	return (i);
 }
