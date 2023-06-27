@@ -3,7 +3,7 @@
 /**
  * print_rev - prints a string in reverse, followed by a new line
  *
- * @str: parameter pointing to string
+ * @s: parameter pointing to string
  *
  * Return: always void
  */
@@ -11,6 +11,9 @@ void print_rev(char *s)
 {
 	int i;
 	int lent;
+
+	if (*s == '\0')
+		return;
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
