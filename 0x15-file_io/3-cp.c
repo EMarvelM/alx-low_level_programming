@@ -3,6 +3,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+void check_IO_stat(int stat, int fd, char *filename, char mode);
+
 /**
  * main - Copies the content of a file to another file.
  * @argc: The number of arguments.
@@ -22,51 +24,64 @@ int main(int argc, char **argv)
 	}
 
 	fd_from = open(argv[1], O_RDONLY);
-	if (fd_from == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
+	check_IO_stat(fd_from, -1, argv[1], 'O');
 
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (fd_to == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		close(fd_from);
-		exit(99);
-	}
+	check_IO_stat(fd_to, -1, argv[2], 'W');
 
 	while ((read_count = read(fd_from, buffer, 1024)) > 0)
 	{
 		write_count = write(fd_to, buffer, read_count);
 		if (write_count == -1 || write_count != read_count)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			close(fd_from);
-			close(fd_to);
-			exit(99);
+			check_IO_stat(-1, fd_to, argv[2], 'W');
 		}
 	}
 
 	if (read_count == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		close(fd_from);
-		close(fd_to);
-		exit(98);
+		check_IO_stat(-1, fd_from, argv[1], 'O');
 	}
 
 	if (close(fd_from) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-		exit(100);
+		check_IO_stat(-1, fd_from, NULL, 'C');
 	}
 
 	if (close(fd_to) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-		exit(100);
+		check_IO_stat(-1, fd_to, NULL, 'C');
 	}
 
 	return (0);
+}
+
+/**
+ * check_IO_stat - checks if a file can be opened or closed
+ * @stat: status value returned from the open, read, or write call
+ * @fd: file descriptor of the file to be closed
+ * @filename: name of the file
+ * @mode: opening, reading, or writing
+ *
+ * Return: void
+ */
+void check_IO_stat(int stat, int fd, char *filename, char mode)
+{
+	if (mode == 'C' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
+
+	else if (mode == 'O' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+		exit(98);
+	}
+
+	else if (mode == 'W' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+		exit(99);
+	}
 }
