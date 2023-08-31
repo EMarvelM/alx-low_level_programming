@@ -1,48 +1,48 @@
 #include "main.h"
 
 /**
- * print_binary - convers int to binary
- * @n: parameter for int to convert (print)
+ * _pow - calculates (base ^ power)
+ * @base: base of the exponent
+ * @power: power of the exponent
  *
- * Return: void
+ * Return: value of (base ^ power)
  */
-
-void print_binary(unsigned long int n)
+unsigned long int _pow(unsigned int base, unsigned int power)
 {
-	static int count;
+	unsigned long int num;
+	unsigned int i;
 
-	if (n > 0)
-	{
-		int result = 0;
-		unsigned long int y = n;
-
-		modu2(&n);
-		result =  y - n - n;
-		print_binary(n);
-
-		_putchar(result);
-		count++;
-	}
-	else if (count == 0 && n == 0)
-	{
-		_putchar(n);
-		count++;
-	}
+	num = 1;
+	for (i = 1; i <= power; i++)
+		num *= base;
+	return (num);
 }
 
-
 /**
- * modu2 - implement the divde by 2
- * @digit: parameter for int to be divided
+ * print_binary - prints a number in binary notation
+ * @n: number to print
  *
  * Return: void
  */
-
-unsigned long int modu2(unsigned long int *digit)
+void print_binary(unsigned long int n)
 {
-	int mode = 1;
+	unsigned long int divisor, check;
+	char flag;
 
-	*digit = (*digit >> mode);
-
-	return (*digit);
+	flag = 0;
+	divisor = _pow(2, sizeof(unsigned long int) * 8 - 1);
+	while (divisor != 0)
+	{
+		check = n & divisor;
+		if (check == divisor)
+		{
+			flag = 1;
+			_putchar('1');
+		}
+		else if (flag == 1 || divisor == 1)
+		{
+			_putchar('0');
+		}
+		divisor >>= 1;
+	}
 }
