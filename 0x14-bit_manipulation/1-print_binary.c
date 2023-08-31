@@ -20,13 +20,11 @@ void print_binary(unsigned long int n)
 		result =  y - n - n;
 		print_binary(n);
 
-		/* printf("%d", result); */
 		_putchar(result);
 		count++;
 	}
 	else if (count == 0 && n == 0)
 	{
-		/* printf("%lu", n); */
 		_putchar(n);
 		count++;
 	}
