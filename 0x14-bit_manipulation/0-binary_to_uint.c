@@ -38,5 +38,4 @@ unsigned int binary_to_uint(const char *b)
 
 	}
 	return (result);
-	/* printf("the value of track = %d\n", track); */
 }

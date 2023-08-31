@@ -20,13 +20,14 @@ void print_binary(unsigned long int n)
 		result =  y - n - n;
 		print_binary(n);
 
-		printf("%d", result);
+		/* printf("%d", result); */
+		_putchar(result);
 		count++;
-		/* printf("the first value of %d is = %lu\n",result , y); */
 	}
 	else if (count == 0 && n == 0)
 	{
-		printf("%lu", n);
+		/* printf("%lu", n); */
+		_putchar(n);
 		count++;
 	}
 }
