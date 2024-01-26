@@ -8,10 +8,6 @@ all : ${NAME}
 ${NAME} : ${OBJ}
 	${CC} ${OBJ} -o ${NAME}
 
-${OBJ} : ${SRC}
+%.o : %.c
+	${CC} -c $< -o $@
 
-main.c :
-	${CC} -c -o main.o main.c
-
-school.c :
-	${CC} -c -o school.o school.c
