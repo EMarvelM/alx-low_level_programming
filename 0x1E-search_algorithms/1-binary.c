@@ -3,7 +3,7 @@
 
 /**
  * binary_search - search for value in sorted array
- * 		using the binary search algorithm
+ *		using the binary search algorithm
  * @array: the array of integers to search
  * @size: the size of the array of int
  * @value: the value to search for
@@ -21,7 +21,7 @@ int binary_search(int *array, size_t size, int value)
 
 	/* print(array, low, high); */
 
-	for (i = 0; low <= high; i+=2)
+	for (i = 0; low <= high; i += 2)
 	{
 		print(array, low, high);
 		if (array[middle] == value)
@@ -55,7 +55,7 @@ void print(int *array, int low, int high)
 	{
 		printf(" %d", array[low]);
 		low++;
-	}	
+	}
 	while (low <= high)
 	{
 		printf(", %d", array[low]);
