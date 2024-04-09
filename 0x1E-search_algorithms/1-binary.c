@@ -43,6 +43,14 @@ int binary_search(int *array, size_t size, int value)
 
 }
 
+/**
+ * print - print the list of array int
+ * @array: the array to print
+ * @low: the lowest range
+ * @high: the highest range to print
+ *
+ * Return: Always void
+ */
 void print(int *array, int low, int high)
 {
 	if (array == NULL)
