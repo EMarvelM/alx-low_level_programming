@@ -1,7 +1,12 @@
 #include "search_algos.h"
 
 /**
- * fnc - explain
+ * linear_search - get the index of a match using linear search
+ * @array: the array of integers to search
+ * @size: size of the array
+ * @value: the value to search for
+ *
+ * Return: the index if found and -1 if not
  */
 
 int linear_search(int *array, size_t size, int value)
