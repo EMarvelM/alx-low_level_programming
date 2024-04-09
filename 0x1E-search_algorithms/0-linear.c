@@ -1,4 +1,5 @@
 #include "search_algos.h"
+#include <stdio.h>
 
 /**
  * linear_search - get the index of a match using linear search
